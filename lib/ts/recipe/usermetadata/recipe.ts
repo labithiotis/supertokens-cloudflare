@@ -25,6 +25,7 @@ import RecipeImplementation from "./recipeImplementation";
 import { RecipeInterface, TypeInput, TypeNormalisedInput } from "./types";
 import { validateAndNormaliseUserInput } from "./utils";
 import OverrideableBuilder from "supertokens-js-override";
+import { env } from "node:process";
 
 export default class Recipe extends RecipeModule {
     static RECIPE_ID = "usermetadata";
@@ -68,7 +69,7 @@ export default class Recipe extends RecipeModule {
     }
 
     static reset() {
-        if (process.env.TEST_MODE !== "testing") {
+        if (env.TEST_MODE !== "testing") {
             throw new Error("calling testing function in non testing env");
         }
         Recipe.instance = undefined;

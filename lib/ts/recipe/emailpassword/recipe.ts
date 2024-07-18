@@ -46,6 +46,7 @@ import MultitenancyRecipe from "../multitenancy/recipe";
 import { User } from "../../user";
 import { isFakeEmail } from "../thirdparty/utils";
 import { FactorIds } from "../multifactorauth";
+import { env } from "node:process";
 
 export default class Recipe extends RecipeModule {
     private static instance: Recipe | undefined = undefined;
@@ -244,7 +245,7 @@ export default class Recipe extends RecipeModule {
     }
 
     static reset() {
-        if (process.env.TEST_MODE !== "testing") {
+        if (env.TEST_MODE !== "testing") {
             throw new Error("calling testing function in non testing env");
         }
         Recipe.instance = undefined;

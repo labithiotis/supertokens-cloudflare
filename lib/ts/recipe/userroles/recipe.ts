@@ -29,6 +29,7 @@ import { PostSuperTokensInitCallbacks } from "../../postSuperTokensInitCallbacks
 import SessionRecipe from "../session/recipe";
 import { UserRoleClaim } from "./userRoleClaim";
 import { PermissionClaim } from "./permissionClaim";
+import { env } from "node:process";
 
 export default class Recipe extends RecipeModule {
     static RECIPE_ID = "userroles";
@@ -81,7 +82,7 @@ export default class Recipe extends RecipeModule {
     }
 
     static reset() {
-        if (process.env.TEST_MODE !== "testing") {
+        if (env.TEST_MODE !== "testing") {
             throw new Error("calling testing function in non testing env");
         }
         Recipe.instance = undefined;

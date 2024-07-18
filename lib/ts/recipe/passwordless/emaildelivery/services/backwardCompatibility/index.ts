@@ -16,6 +16,7 @@ import { TypePasswordlessEmailDeliveryInput } from "../../../types";
 import { EmailDeliveryInterface } from "../../../../../ingredients/emaildelivery/types";
 import { NormalisedAppinfo, UserContext } from "../../../../../types";
 import { postWithFetch } from "../../../../../utils";
+import { env } from "node:process";
 
 async function createAndSendEmailUsingSupertokensService(input: {
     appInfo: NormalisedAppinfo;
@@ -28,7 +29,7 @@ async function createAndSendEmailUsingSupertokensService(input: {
     codeLifetime: number;
     isFirstFactor: boolean;
 }): Promise<void> {
-    if (process.env.TEST_MODE === "testing") {
+    if (env.TEST_MODE === "testing") {
         return;
     }
     const result = await postWithFetch(

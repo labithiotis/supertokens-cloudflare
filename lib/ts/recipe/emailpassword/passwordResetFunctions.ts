@@ -15,6 +15,7 @@
 
 import { NormalisedAppinfo } from "../../types";
 import { postWithFetch } from "../../utils";
+import { env } from "node:process";
 
 export async function createAndSendEmailUsingSupertokensService(
     appInfo: NormalisedAppinfo,
@@ -25,7 +26,7 @@ export async function createAndSendEmailUsingSupertokensService(
     passwordResetURLWithToken: string
 ) {
     // related issue: https://github.com/supertokens/supertokens-node/issues/38
-    if (process.env.TEST_MODE === "testing") {
+    if (env.TEST_MODE === "testing") {
         return;
     }
 

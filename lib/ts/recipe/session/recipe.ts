@@ -42,6 +42,7 @@ import OverrideableBuilder from "supertokens-js-override";
 import { APIOptions } from ".";
 import OpenIdRecipe from "../openid/recipe";
 import { logDebugMessage } from "../../logger";
+import { env } from "node:process";
 
 // For Express
 export default class SessionRecipe extends RecipeModule {
@@ -121,7 +122,7 @@ export default class SessionRecipe extends RecipeModule {
     }
 
     static reset() {
-        if (process.env.TEST_MODE !== "testing") {
+        if (env.TEST_MODE !== "testing") {
             throw new Error("calling testing function in non testing env");
         }
         SessionRecipe.instance = undefined;

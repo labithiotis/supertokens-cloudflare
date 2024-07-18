@@ -32,6 +32,7 @@ import STError from "./error";
 import { enableDebugLogs, logDebugMessage } from "./logger";
 import { PostSuperTokensInitCallbacks } from "./postSuperTokensInitCallbacks";
 import { DEFAULT_TENANT_ID } from "./recipe/multitenancy/constants";
+import { env } from "node:process";
 
 export default class SuperTokens {
     private static instance: SuperTokens | undefined;
@@ -142,7 +143,7 @@ export default class SuperTokens {
         // To let those cases function without initializing account linking we do not check it here, but when
         // the authentication endpoints are called.
 
-        this.telemetryEnabled = config.telemetry === undefined ? process.env.TEST_MODE !== "testing" : config.telemetry;
+        this.telemetryEnabled = config.telemetry === undefined ? env.TEST_MODE !== "testing" : config.telemetry;
     }
 
     static init(config: TypeInput) {
@@ -153,7 +154,7 @@ export default class SuperTokens {
     }
 
     static reset() {
-        if (process.env.TEST_MODE !== "testing") {
+        if (env.TEST_MODE !== "testing") {
             throw new Error("calling testing function in non testing env");
         }
         Querier.reset();
