@@ -23,6 +23,7 @@ import { COOKIE_HEADER } from "./constants";
 import { getFromObjectCaseInsensitive } from "../utils";
 import contentType from "content-type";
 import pako from "pako";
+import { Buffer } from "node:buffer";
 
 async function inflate(stream: IncomingMessage): Promise<string> {
     if (!stream) {

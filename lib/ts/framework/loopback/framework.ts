@@ -30,6 +30,7 @@ import {
 } from "../utils";
 import SuperTokens from "../../supertokens";
 import type { Framework } from "../types";
+import { Buffer } from "node:buffer";
 
 export class LoopbackRequest extends BaseRequest {
     private request: Request;
