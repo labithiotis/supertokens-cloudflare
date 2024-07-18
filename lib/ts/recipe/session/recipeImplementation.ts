@@ -54,7 +54,7 @@ export default function getRecipeInterface(
         Every core instance a backend is connected to is expected to connect to the same database and use the same key set for
         token verification. Otherwise, the result of session verification would depend on which core is currently available.
     */
-    const combinedJWKS: ReturnType<typeof createRemoteJWKSet> = async (...args) => {
+    const combinedJWKS: JWTVerifyGetKey = async (...args) => {
         let lastError = undefined;
         if (JWKS.length === 0) {
             throw Error(
