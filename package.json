@@ -121,7 +121,7 @@
         "libphonenumber-js": "^1.9.44",
         "nodemailer": "^6.7.2",
         "pkce-challenge": "^3.0.0",
-        "psl": "1.8.0",
+        "psl": "github:lupomontero/psl#a789d0381c886da02eb8594da0761860657c08ba",
         "supertokens-js-override": "^0.0.4",
         "twilio": "^4.19.3"
     },
