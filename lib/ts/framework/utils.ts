@@ -13,7 +13,6 @@
  * under the License.
  */
 
-import type { Readable } from "stream";
 import { parse, serialize } from "cookie";
 import type { Request, Response } from "express";
 import type { IncomingMessage } from "node:http";
@@ -23,48 +22,25 @@ import type { HTTPMethod } from "../types";
 import { COOKIE_HEADER } from "./constants";
 import { getFromObjectCaseInsensitive } from "../utils";
 import contentType from "content-type";
-import type { ZlibOptions, BrotliOptions } from "zlib";
-import zlib from "zlib";
+import pako from "pako";
 
-type InflateOptions = ZlibOptions & {
-    brotli?: BrotliOptions;
-    encoding?: string;
-    gzip?: "deflate" | "gzip" | "identity" | undefined;
-};
-
-function inflate(stream: IncomingMessage, options?: InflateOptions) {
+async function inflate(stream: IncomingMessage): Promise<string> {
     if (!stream) {
         throw new TypeError("argument stream is required");
     }
 
-    options = options || {};
+    const encoding = stream.headers && stream.headers["content-encoding"];
 
-    const encoding = options.encoding || (stream.headers && stream.headers["content-encoding"]) || "identity";
-
-    let decompression;
-    switch (encoding) {
-        case "gzip":
-        case "deflate":
-            delete options.brotli;
-            delete options.encoding;
-            decompression = zlib.createUnzip(options);
-            break;
-        case "br":
-            if (zlib.createBrotliDecompress) {
-                decompression = zlib.createBrotliDecompress(options.brotli);
-            }
-            break;
-        case "identity":
-            return stream;
+    let i = new pako.Inflate();
+    for await (const chunk of stream) {
+        i.push(Buffer.from(chunk));
     }
 
-    if (!decompression) {
-        const err: Error & { status?: number } = new Error("Unsupported Content-Encoding: " + encoding);
-        err.status = 415;
-        throw err;
+    if (typeof i.result === "string") {
+        return i.result;
+    } else {
+        return new TextDecoder(encoding).decode(i.result, { stream: true });
     }
-
-    return stream.pipe(decompression);
 }
 
 export function getCookieValueFromHeaders(headers: any, key: string): string | undefined {
@@ -165,8 +141,7 @@ export async function parseJSONBodyFromRequest(req: IncomingMessage) {
     if (!encoding.startsWith("utf-")) {
         throw new Error(`unsupported charset ${encoding.toUpperCase()}`);
     }
-    const buffer = await getBody(inflate(req));
-    const str = buffer.toString(encoding as BufferEncoding);
+    const str = await inflate(req);
 
     if (str.length === 0) {
         return {};
@@ -179,8 +154,7 @@ export async function parseURLEncodedFormData(req: IncomingMessage) {
     if (!encoding.startsWith("utf-")) {
         throw new Error(`unsupported charset ${encoding.toUpperCase()}`);
     }
-    const buffer = await getBody(inflate(req));
-    const str = buffer.toString(encoding as BufferEncoding);
+    const str = await inflate(req);
 
     let body: any = {};
     for (const [key, val] of new URLSearchParams(str).entries()) {
@@ -276,10 +250,10 @@ export function setHeaderForExpressLikeResponse(res: Response, key: string, valu
             }
         } else if (allowDuplicateKey) {
             /**
-                We only want to append if it does not already exist
-                For example if the caller is trying to add front token to the access control exposed headers property
-                we do not want to append if something else had already added it
-            */
+    We only want to append if it does not already exist
+    For example if the caller is trying to add front token to the access control exposed headers property
+    we do not want to append if something else had already added it
+*/
             if (typeof existingValue !== "string" || !existingValue.includes(value)) {
                 if (res.header !== undefined) {
                     res.header(key, existingValue + ", " + value);
@@ -401,18 +375,4 @@ export function serializeCookieValue(
     };
 
     return serialize(key, value, opts);
-}
-
-// based on https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction
-function getBody(request: Readable) {
-    return new Promise<Buffer>((resolve) => {
-        const bodyParts: Uint8Array[] = [];
-        request
-            .on("data", (chunk) => {
-                bodyParts.push(chunk);
-            })
-            .on("end", () => {
-                resolve(Buffer.concat(bodyParts));
-            });
-    });
 }
