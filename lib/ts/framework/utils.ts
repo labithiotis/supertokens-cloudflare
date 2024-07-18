@@ -13,7 +13,7 @@
  * under the License.
  */
 
-import type { Readable } from "node:stream";
+import type { Readable } from "stream";
 import { parse, serialize } from "cookie";
 import type { Request, Response } from "express";
 import type { IncomingMessage } from "node:http";
@@ -23,8 +23,8 @@ import type { HTTPMethod } from "../types";
 import { COOKIE_HEADER } from "./constants";
 import { getFromObjectCaseInsensitive } from "../utils";
 import contentType from "content-type";
-import type { ZlibOptions, BrotliOptions } from "node:zlib";
-import zlib from "node:zlib";
+import type { ZlibOptions, BrotliOptions } from "zlib";
+import zlib from "zlib";
 
 type InflateOptions = ZlibOptions & {
     brotli?: BrotliOptions;
