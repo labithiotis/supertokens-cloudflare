@@ -13,17 +13,59 @@
  * under the License.
  */
 
-import { Readable } from "stream";
+import type { Readable } from "node:stream";
 import { parse, serialize } from "cookie";
 import type { Request, Response } from "express";
-import type { IncomingMessage } from "http";
-import { ServerResponse } from "http";
+import type { IncomingMessage } from "node:http";
+import { ServerResponse } from "node:http";
 import STError from "../error";
 import type { HTTPMethod } from "../types";
 import { COOKIE_HEADER } from "./constants";
 import { getFromObjectCaseInsensitive } from "../utils";
 import contentType from "content-type";
-import inflate from "inflation";
+import type { ZlibOptions, BrotliOptions } from "node:zlib";
+import zlib from "node:zlib";
+
+type InflateOptions = ZlibOptions & {
+    brotli?: BrotliOptions;
+    encoding?: string;
+    gzip?: "deflate" | "gzip" | "identity" | undefined;
+};
+
+function inflate(stream: IncomingMessage, options?: InflateOptions) {
+    if (!stream) {
+        throw new TypeError("argument stream is required");
+    }
+
+    options = options || {};
+
+    const encoding = options.encoding || (stream.headers && stream.headers["content-encoding"]) || "identity";
+
+    let decompression;
+    switch (encoding) {
+        case "gzip":
+        case "deflate":
+            delete options.brotli;
+            delete options.encoding;
+            decompression = zlib.createUnzip(options);
+            break;
+        case "br":
+            if (zlib.createBrotliDecompress) {
+                decompression = zlib.createBrotliDecompress(options.brotli);
+            }
+            break;
+        case "identity":
+            return stream;
+    }
+
+    if (!decompression) {
+        const err: Error & { status?: number } = new Error("Unsupported Content-Encoding: " + encoding);
+        err.status = 415;
+        throw err;
+    }
+
+    return stream.pipe(decompression);
+}
 
 export function getCookieValueFromHeaders(headers: any, key: string): string | undefined {
     if (headers === undefined || headers === null) {

@@ -1,8 +1,8 @@
 // @ts-nocheck
 /// <reference types="node" />
 import type { Request, Response } from "express";
-import type { IncomingMessage } from "http";
-import { ServerResponse } from "http";
+import type { IncomingMessage } from "node:http";
+import { ServerResponse } from "node:http";
 import type { HTTPMethod } from "../types";
 export declare function getCookieValueFromHeaders(headers: any, key: string): string | undefined;
 export declare function getCookieValueFromIncomingMessage(request: IncomingMessage, key: string): string | undefined;

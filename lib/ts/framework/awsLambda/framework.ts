@@ -30,7 +30,7 @@ import { COOKIE_HEADER } from "../constants";
 import { SessionContainerInterface } from "../../recipe/session/types";
 import SuperTokens from "../../supertokens";
 import { Framework } from "../types";
-import { parse } from "querystring";
+import { parse } from "node:querystring";
 
 export class AWSRequest extends BaseRequest {
     private event: APIGatewayProxyEventV2 | APIGatewayProxyEvent;
