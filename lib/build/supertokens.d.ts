@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { TypeInput, NormalisedAppinfo, HTTPMethod, SuperTokensInfo, UserContext } from "./types";
-import RecipeModule from "./recipeModule";
-import NormalisedURLPath from "./normalisedURLPath";
 import type { BaseRequest, BaseResponse } from "./framework";
 import type { TypeFramework } from "./framework/types";
+import NormalisedURLPath from "./normalisedURLPath";
+import RecipeModule from "./recipeModule";
+import { HTTPMethod, NormalisedAppinfo, SuperTokensInfo, TypeInput, UserContext } from "./types";
 export default class SuperTokens {
     private static instance;
     framework: TypeFramework;

@@ -13,26 +13,30 @@
  * under the License.
  */
 
-import { TypeInput, NormalisedAppinfo, HTTPMethod, SuperTokensInfo, UserContext } from "./types";
-import {
-    normaliseInputAppInfoOrThrowError,
-    maxVersion,
-    normaliseHttpMethod,
-    sendNon200ResponseWithMessage,
-    getRidFromHeader,
-} from "./utils";
-import { Querier } from "./querier";
-import RecipeModule from "./recipeModule";
-import { HEADER_RID, HEADER_FDI } from "./constants";
-import NormalisedURLDomain from "./normalisedURLDomain";
-import NormalisedURLPath from "./normalisedURLPath";
+import { env } from "node:process";
+import { HEADER_FDI, HEADER_RID } from "./constants";
+import STError from "./error";
 import type { BaseRequest, BaseResponse } from "./framework";
 import type { TypeFramework } from "./framework/types";
-import STError from "./error";
 import { enableDebugLogs, logDebugMessage } from "./logger";
+import NormalisedURLDomain from "./normalisedURLDomain";
+import NormalisedURLPath from "./normalisedURLPath";
 import { PostSuperTokensInitCallbacks } from "./postSuperTokensInitCallbacks";
+import { Querier } from "./querier";
+import MultiFactorAuthRecipe from "./recipe/multifactorauth/recipe";
 import { DEFAULT_TENANT_ID } from "./recipe/multitenancy/constants";
-import { env } from "node:process";
+import MultitenancyRecipe from "./recipe/multitenancy/recipe";
+import TotpRecipe from "./recipe/totp/recipe";
+import UserMetadataRecipe from "./recipe/usermetadata/recipe";
+import RecipeModule from "./recipeModule";
+import { HTTPMethod, NormalisedAppinfo, SuperTokensInfo, TypeInput, UserContext } from "./types";
+import {
+    getRidFromHeader,
+    maxVersion,
+    normaliseHttpMethod,
+    normaliseInputAppInfoOrThrowError,
+    sendNon200ResponseWithMessage,
+} from "./utils";
 
 export default class SuperTokens {
     private static instance: SuperTokens | undefined;
@@ -104,14 +108,6 @@ export default class SuperTokens {
         let totpFound = false;
         let userMetadataFound = false;
         let multiFactorAuthFound = false;
-
-        // Multitenancy recipe is an always initialized recipe and needs to be imported this way
-        // so that there is no circular dependency. Otherwise there would be cyclic dependency
-        // between `supertokens.ts` -> `recipeModule.ts` -> `multitenancy/recipe.ts`
-        let MultitenancyRecipe = require("./recipe/multitenancy/recipe").default;
-        let UserMetadataRecipe = require("./recipe/usermetadata/recipe").default;
-        let MultiFactorAuthRecipe = require("./recipe/multifactorauth/recipe").default;
-        let TotpRecipe = require("./recipe/totp/recipe").default;
 
         this.recipeModules = config.recipeList.map((func) => {
             const recipeModule = func(this.appInfo, this.isInServerlessEnv);

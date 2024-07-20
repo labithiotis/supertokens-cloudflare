@@ -15,7 +15,7 @@ coreDriverInterfaceSupported.json
 .github/
 .gitattributes
 examples/
-add-ts-no-check.js
+add-ts-no-check.cjs
 docs/
 .prettierignore
 updateLibInExample

@@ -5,7 +5,7 @@ import RecipeUserId from "../../recipeUserId";
 import { GetEmailForRecipeUserIdFunc, UserEmailInfo } from "./types";
 import { getUser } from "../..";
 import { UserContext } from "../../types";
-import type AccountLinkingRecipe from "../accountlinking/recipe";
+import AccountLinkingRecipe from "../accountlinking/recipe";
 
 export default function getRecipeInterface(
     querier: Querier,
@@ -78,7 +78,7 @@ export default function getRecipeInterface(
                         if (emailInfo.status === "OK" && emailInfo.email === response.email) {
                             // we do this here to prevent cyclic dependencies.
                             // TODO: Fix this.
-                            let AccountLinking = require("../accountlinking/recipe").default.getInstance() as AccountLinkingRecipe;
+                            const AccountLinking = AccountLinkingRecipe.getInstance();
                             await AccountLinking.tryLinkingByAccountInfoOrCreatePrimaryUser({
                                 tenantId,
                                 inputUser: updatedUser,
