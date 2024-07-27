@@ -1,3 +1,3 @@
 // @ts-nocheck
-import { RecipeInterface } from "./types";
+import type { RecipeInterface } from "./types";
 export default function getRecipeImplementation(): RecipeInterface;

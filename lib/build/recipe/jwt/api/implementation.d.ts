@@ -1,3 +1,3 @@
 // @ts-nocheck
-import { APIInterface } from "../types";
+import type { APIInterface } from "../types";
 export default function getAPIImplementation(): APIInterface;

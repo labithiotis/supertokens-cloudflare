@@ -2,8 +2,8 @@
 import RecipeModule from "./recipeModule";
 import NormalisedURLDomain from "./normalisedURLDomain";
 import NormalisedURLPath from "./normalisedURLPath";
-import { TypeFramework } from "./framework/types";
-import { RecipeLevelUser } from "./recipe/accountlinking/types";
+import type { TypeFramework } from "./framework/types";
+import type { RecipeLevelUser } from "./recipe/accountlinking/types";
 import { BaseRequest } from "./framework";
 declare const __brand: unique symbol;
 declare type Brand<B> = {
@@ -14,7 +14,10 @@ export declare type UserContext = Branded<Record<string, any>, "UserContext">;
 export declare type AppInfo = {
     appName: string;
     websiteDomain?: string;
-    origin?: string | ((input: { request: BaseRequest | undefined; userContext: UserContext }) => string);
+    origin?: string | ((input: {
+        request: BaseRequest | undefined;
+        userContext: UserContext;
+    }) => string);
     websiteBasePath?: string;
     apiDomain: string;
     apiBasePath?: string;
@@ -22,10 +25,16 @@ export declare type AppInfo = {
 };
 export declare type NormalisedAppinfo = {
     appName: string;
-    getOrigin: (input: { request: BaseRequest | undefined; userContext: UserContext }) => NormalisedURLDomain;
+    getOrigin: (input: {
+        request: BaseRequest | undefined;
+        userContext: UserContext;
+    }) => NormalisedURLDomain;
     apiDomain: NormalisedURLDomain;
     topLevelAPIDomain: string;
-    getTopLevelWebsiteDomain: (input: { request: BaseRequest | undefined; userContext: UserContext }) => string;
+    getTopLevelWebsiteDomain: (input: {
+        request: BaseRequest | undefined;
+        userContext: UserContext;
+    }) => string;
     apiBasePath: NormalisedURLPath;
     apiGatewayPath: NormalisedURLPath;
     websiteBasePath: NormalisedURLPath;
@@ -88,7 +97,10 @@ export declare type User = {
         verified: boolean;
         hasSameEmailAs: (email: string | undefined) => boolean;
         hasSamePhoneNumberAs: (phoneNumber: string | undefined) => boolean;
-        hasSameThirdPartyInfoAs: (thirdParty?: { id: string; userId: string }) => boolean;
+        hasSameThirdPartyInfoAs: (thirdParty?: {
+            id: string;
+            userId: string;
+        }) => boolean;
         toJson: () => any;
     })[];
     toJson: () => any;

@@ -3,8 +3,8 @@ import type { Context, Next } from "koa";
 import type { HTTPMethod } from "../../types";
 import { BaseRequest } from "../request";
 import { BaseResponse } from "../response";
-import { SessionContainerInterface } from "../../recipe/session/types";
-import { Framework } from "../types";
+import type { SessionContainerInterface } from "../../recipe/session/types";
+import type { Framework } from "../types";
 export declare class KoaRequest extends BaseRequest {
     private ctx;
     constructor(ctx: Context);
@@ -24,16 +24,7 @@ export declare class KoaResponse extends BaseResponse {
     sendHTMLResponse: (html: string) => void;
     setHeader: (key: string, value: string, allowDuplicateKey: boolean) => void;
     removeHeader: (key: string) => void;
-    setCookie: (
-        key: string,
-        value: string,
-        domain: string | undefined,
-        secure: boolean,
-        httpOnly: boolean,
-        expires: number,
-        path: string,
-        sameSite: "strict" | "lax" | "none"
-    ) => void;
+    setCookie: (key: string, value: string, domain: string | undefined, secure: boolean, httpOnly: boolean, expires: number, path: string, sameSite: "strict" | "lax" | "none") => void;
     /**
      * @param {number} statusCode
      */

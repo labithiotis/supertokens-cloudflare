@@ -3,8 +3,8 @@ import STError from "../../error";
 import type { BaseRequest, BaseResponse } from "../../framework";
 import normalisedURLPath from "../../normalisedURLPath";
 import RecipeModule from "../../recipeModule";
-import { APIHandled, HTTPMethod, NormalisedAppinfo, RecipeListFunction, UserContext } from "../../types";
-import { APIInterface, RecipeInterface, TypeInput, TypeNormalisedInput } from "./types";
+import type { APIHandled, HTTPMethod, NormalisedAppinfo, RecipeListFunction, UserContext } from "../../types";
+import type { APIInterface, RecipeInterface, TypeInput, TypeNormalisedInput } from "./types";
 import JWTRecipe from "../jwt/recipe";
 export default class OpenIdRecipe extends RecipeModule {
     static RECIPE_ID: string;
@@ -18,21 +18,8 @@ export default class OpenIdRecipe extends RecipeModule {
     static init(config?: TypeInput): RecipeListFunction;
     static reset(): void;
     getAPIsHandled: () => APIHandled[];
-    handleAPIRequest: (
-        id: string,
-        tenantId: string,
-        req: BaseRequest,
-        response: BaseResponse,
-        path: normalisedURLPath,
-        method: HTTPMethod,
-        userContext: UserContext
-    ) => Promise<boolean>;
-    handleError: (
-        error: STError,
-        request: BaseRequest,
-        response: BaseResponse,
-        userContext: UserContext
-    ) => Promise<void>;
+    handleAPIRequest: (id: string, tenantId: string, req: BaseRequest, response: BaseResponse, path: normalisedURLPath, method: HTTPMethod, userContext: UserContext) => Promise<boolean>;
+    handleError: (error: STError, request: BaseRequest, response: BaseResponse, userContext: UserContext) => Promise<void>;
     getAllCORSHeaders: () => string[];
     isErrorFromThisRecipe: (err: any) => err is STError;
 }

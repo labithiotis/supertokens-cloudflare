@@ -3,8 +3,8 @@ import { BaseRequest, BaseResponse } from "../../framework";
 import NormalisedURLPath from "../../normalisedURLPath";
 import RecipeModule from "../../recipeModule";
 import STError from "../../error";
-import { APIHandled, HTTPMethod, NormalisedAppinfo, RecipeListFunction, UserContext } from "../../types";
-import { APIInterface, RecipeInterface, TypeInput, TypeNormalisedInput } from "./types";
+import type { APIHandled, HTTPMethod, NormalisedAppinfo, RecipeListFunction, UserContext } from "../../types";
+import type { APIInterface, RecipeInterface, TypeInput, TypeNormalisedInput } from "./types";
 export default class Recipe extends RecipeModule {
     private static instance;
     static RECIPE_ID: string;
@@ -18,15 +18,7 @@ export default class Recipe extends RecipeModule {
     static init(config?: TypeInput): RecipeListFunction;
     static reset(): void;
     getAPIsHandled: () => APIHandled[];
-    handleAPIRequest: (
-        id: string,
-        _tenantId: string,
-        req: BaseRequest,
-        res: BaseResponse,
-        _: NormalisedURLPath,
-        __: HTTPMethod,
-        userContext: UserContext
-    ) => Promise<boolean>;
+    handleAPIRequest: (id: string, _tenantId: string, req: BaseRequest, res: BaseResponse, _: NormalisedURLPath, __: HTTPMethod, userContext: UserContext) => Promise<boolean>;
     handleError: (err: STError, _: BaseRequest, __: BaseResponse) => Promise<void>;
     getAllCORSHeaders: () => string[];
     isErrorFromThisRecipe: (err: any) => err is STError;

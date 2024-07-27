@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { RecipeLevelUser } from "./recipe/accountlinking/types";
+import type { RecipeLevelUser } from "./recipe/accountlinking/types";
 import RecipeUserId from "./recipeUserId";
-import { JSONObject, User as UserType } from "./types";
+import type { JSONObject, User as UserType } from "./types";
 export declare class LoginMethod implements RecipeLevelUser {
     readonly recipeId: RecipeLevelUser["recipeId"];
     readonly recipeUserId: RecipeUserId;
@@ -14,7 +14,10 @@ export declare class LoginMethod implements RecipeLevelUser {
     constructor(loginMethod: UserWithoutHelperFunctions["loginMethods"][number]);
     hasSameEmailAs(email: string | undefined): boolean;
     hasSamePhoneNumberAs(phoneNumber: string | undefined): boolean;
-    hasSameThirdPartyInfoAs(thirdParty?: { id: string; userId: string }): boolean;
+    hasSameThirdPartyInfoAs(thirdParty?: {
+        id: string;
+        userId: string;
+    }): boolean;
     toJson(): JSONObject;
 }
 export declare class User implements UserType {

@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { SessionClaim, SessionClaimValidator } from "../types";
+import type { SessionClaimValidator } from "../types";
+import { SessionClaim } from "../types";
 import { PrimitiveClaim } from "./primitiveClaim";
 export declare class BooleanClaim extends PrimitiveClaim<boolean> {
     constructor(conf: {

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { HTTPMethod } from "../types";
+import type { HTTPMethod } from "../types";
 export declare abstract class BaseRequest {
     private parsedJSONBody;
     private parsedUrlEncodedFormData;

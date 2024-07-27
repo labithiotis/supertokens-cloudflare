@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { BooleanClaim } from "../session/claims";
-import { SessionClaimValidator } from "../session";
+import type { SessionClaimValidator } from "../session";
 /**
  * We include "Class" in the class name, because it makes it easier to import the right thing (the instance) instead of this.
  * */

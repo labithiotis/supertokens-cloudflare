@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { JWTVerifyGetKey } from "jose";
-import { RecipeInterface, TypeNormalisedInput } from "./types";
+import type { JWTVerifyGetKey } from "jose";
+import type { RecipeInterface, TypeNormalisedInput } from "./types";
 import { Querier } from "../../querier";
-import { NormalisedAppinfo } from "../../types";
+import type { NormalisedAppinfo } from "../../types";
 export declare type Helpers = {
     querier: Querier;
     JWKS: JWTVerifyGetKey;
@@ -10,9 +10,4 @@ export declare type Helpers = {
     appInfo: NormalisedAppinfo;
     getRecipeImpl: () => RecipeInterface;
 };
-export default function getRecipeInterface(
-    querier: Querier,
-    config: TypeNormalisedInput,
-    appInfo: NormalisedAppinfo,
-    getRecipeImplAfterOverrides: () => RecipeInterface
-): RecipeInterface;
+export default function getRecipeInterface(querier: Querier, config: TypeNormalisedInput, appInfo: NormalisedAppinfo, getRecipeImplAfterOverrides: () => RecipeInterface): RecipeInterface;

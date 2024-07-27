@@ -3,9 +3,9 @@
         "target": "ES2017",
         "strictNullChecks": true,
         "declaration": true,
-        "module": "commonJS",
-        "outDir": "./lib/build",
-        "moduleResolution": "Node",
+        "module": "ESNext",
+        "outDir": "lib/build",
+        "moduleResolution": "node",
         "noImplicitAny": true,
         "sourceMap": false,
         "noImplicitThis": false,
@@ -15,8 +15,8 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "esModuleInterop": true,
-        "lib": ["ES2017", "dom"]
+        "lib": ["ES2017"],
+        "esModuleInterop": true
     },
     "include": ["./lib/ts/**/*"],
     "exclude": ["build"],

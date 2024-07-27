@@ -1,13 +1,13 @@
 // @ts-nocheck
 import RecipeModule from "../../recipeModule";
-import { TypeInput, TypeNormalisedInput, RecipeInterface, APIInterface, GetEmailForRecipeUserIdFunc } from "./types";
-import { NormalisedAppinfo, APIHandled, RecipeListFunction, HTTPMethod, UserContext } from "../../types";
+import type { TypeInput, TypeNormalisedInput, RecipeInterface, APIInterface, GetEmailForRecipeUserIdFunc } from "./types";
+import type { NormalisedAppinfo, APIHandled, RecipeListFunction, HTTPMethod, UserContext } from "../../types";
 import STError from "./error";
 import NormalisedURLPath from "../../normalisedURLPath";
 import type { BaseRequest, BaseResponse } from "../../framework";
 import EmailDeliveryIngredient from "../../ingredients/emaildelivery";
-import { TypeEmailVerificationEmailDeliveryInput } from "./types";
-import { SessionContainerInterface } from "../session/types";
+import type { TypeEmailVerificationEmailDeliveryInput } from "./types";
+import type { SessionContainerInterface } from "../session/types";
 import RecipeUserId from "../../recipeUserId";
 export default class Recipe extends RecipeModule {
     private static instance;
@@ -17,29 +17,15 @@ export default class Recipe extends RecipeModule {
     apiImpl: APIInterface;
     isInServerlessEnv: boolean;
     emailDelivery: EmailDeliveryIngredient<TypeEmailVerificationEmailDeliveryInput>;
-    constructor(
-        recipeId: string,
-        appInfo: NormalisedAppinfo,
-        isInServerlessEnv: boolean,
-        config: TypeInput,
-        ingredients: {
-            emailDelivery: EmailDeliveryIngredient<TypeEmailVerificationEmailDeliveryInput> | undefined;
-        }
-    );
+    constructor(recipeId: string, appInfo: NormalisedAppinfo, isInServerlessEnv: boolean, config: TypeInput, ingredients: {
+        emailDelivery: EmailDeliveryIngredient<TypeEmailVerificationEmailDeliveryInput> | undefined;
+    });
     static getInstanceOrThrowError(): Recipe;
     static getInstance(): Recipe | undefined;
     static init(config: TypeInput): RecipeListFunction;
     static reset(): void;
     getAPIsHandled: () => APIHandled[];
-    handleAPIRequest: (
-        id: string,
-        tenantId: string,
-        req: BaseRequest,
-        res: BaseResponse,
-        _: NormalisedURLPath,
-        __: HTTPMethod,
-        userContext: UserContext
-    ) => Promise<boolean>;
+    handleAPIRequest: (id: string, tenantId: string, req: BaseRequest, res: BaseResponse, _: NormalisedURLPath, __: HTTPMethod, userContext: UserContext) => Promise<boolean>;
     handleError: (err: STError, _: BaseRequest, __: BaseResponse) => Promise<void>;
     getAllCORSHeaders: () => string[];
     isErrorFromThisRecipe: (err: any) => err is STError;

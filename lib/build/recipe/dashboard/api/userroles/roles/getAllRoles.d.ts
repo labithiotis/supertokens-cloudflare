@@ -1,4 +1,4 @@
 // @ts-nocheck
-import { APIFunction } from "../../../types";
+import type { APIFunction } from "../../../types";
 declare const getAllRoles: APIFunction;
 export default getAllRoles;
