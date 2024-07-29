@@ -14,7 +14,7 @@
         "build-check": "cd lib && npx tsc -p tsconfig.json --noEmit && cd ../test/with-typescript && npm run build",
         "build-tsc": "npx tsc -p tsconfig.json",
         "build-tsup": "npx tsup --config tsup.config.ts && npx tsc --emitDeclarationOnly",
-        "build": "rm -rf lib/build && npm run build-tsup && cd ./test/with-typescript && npm run build && cd ../.. && npm run post-build",
+        "build": "rm -rf lib/build && npm run build-tsc && cd ./test/with-typescript && npm run build && cd ../.. && npm run post-build",
         "pretty": "npx pretty-quick .",
         "post-build": "node add-ts-no-check.cjs",
         "build-pretty": "npm run build && npm run pretty",
@@ -41,176 +41,215 @@
     "types": "./lib/build/types.d.ts",
     "exports": {
         ".": {
+            "default": "./lib/build/index.mjs",
             "require": "./lib/build/index.cjs",
             "import": "./lib/build/index.mjs",
             "types": "./lib/build/index.d.ts"
         },
         "./nextjs": {
+            "default": "./lib/build/nextjs.mjs",
             "require": "./lib/build/nextjs.cjs",
             "import": "./lib/build/nextjs.mjs",
             "types": "./lib/build/nextjs.d.ts"
         },
         "./framework/awsLambda": {
+            "default": "./lib/build/framework/awsLambda/index.mjs",
             "require": "./lib/build/framework/awsLambda/index.cjs",
             "import": "./lib/build/framework/awsLambda/index.mjs",
             "types": "./lib/build/framework/awsLambda/index.d.ts"
         },
         "./framework/express": {
+            "default": "./lib/build/framework/express/index.mjs",
             "require": "./lib/build/framework/express/index.cjs",
             "import": "./lib/build/framework/express/index.mjs",
             "types": "./lib/build/framework/express/index.d.ts"
         },
         "./framework/fastify": {
+            "default": "./lib/build/framework/fastify/index.mjs",
             "require": "./lib/build/framework/fastify/index.cjs",
             "import": "./lib/build/framework/fastify/index.mjs",
             "types": "./lib/build/framework/fastify/index.d.ts"
         },
         "./framework/hapi": {
+            "default": "./lib/build/framework/hapi/index.mjs",
             "require": "./lib/build/framework/hapi/index.cjs",
             "import": "./lib/build/framework/hapi/index.mjs",
             "types": "./lib/build/framework/hapi/index.d.ts"
         },
         "./framework/koa": {
+            "default": "./lib/build/framework/koa/index.mjs",
             "require": "./lib/build/framework/koa/index.cjs",
             "import": "./lib/build/framework/koa/index.mjs",
             "types": "./lib/build/framework/koa/index.d.ts"
         },
         "./framework/loopback": {
+            "default": "./lib/build/framework/loopback/index.mjs",
             "require": "./lib/build/framework/loopback/index.cjs",
             "import": "./lib/build/framework/loopback/index.mjs",
             "types": "./lib/build/framework/loopback/index.d.ts"
         },
         "./recipe/dashboard": {
+            "default": "./lib/build/recipe/dashboard/index.mjs",
             "require": "./lib/build/recipe/dashboard/index.cjs",
             "import": "./lib/build/recipe/dashboard/index.mjs",
             "types": "./lib/build/recipe/dashboard/index.d.ts"
         },
         "./recipe/emailpassword": {
+            "default": "./lib/build/recipe/emailpassword/index.mjs",
             "require": "./lib/build/recipe/emailpassword/index.cjs",
             "import": "./lib/build/recipe/emailpassword/index.mjs",
             "types": "./lib/build/recipe/emailpassword/index.d.ts"
         },
         "./recipe/emailpassword/emaildelivery": {
+            "default": "./lib/build/recipe/emailpassword/emaildelivery/services/index.mjs",
             "require": "./lib/build/recipe/emailpassword/emaildelivery/services/index.cjs",
             "import": "./lib/build/recipe/emailpassword/emaildelivery/services/index.mjs",
             "types": "./lib/build/recipe/emailpassword/emaildelivery/services/index.d.ts"
         },
         "./recipe/emailverification": {
+            "default": "./lib/build/recipe/emailverification/index.mjs",
             "require": "./lib/build/recipe/emailverification/index.cjs",
             "import": "./lib/build/recipe/emailverification/index.mjs",
             "types": "./lib/build/recipe/emailverification/index.d.ts"
         },
         "./recipe/emailverification/emaildelivery": {
+            "default": "./lib/build/recipe/emailverification/emaildelivery/services/index.mjs",
             "require": "./lib/build/recipe/emailverification/emaildelivery/services/index.cjs",
             "import": "./lib/build/recipe/emailverification/emaildelivery/services/index.mjs",
             "types": "./lib/build/recipe/emailverification/emaildelivery/services/index.d.ts"
         },
         "./recipe/jwt": {
+            "default": "./lib/build/recipe/jwt/index.mjs",
             "require": "./lib/build/recipe/jwt/index.cjs",
             "import": "./lib/build/recipe/jwt/index.mjs",
             "types": "./lib/build/recipe/jwt/index.d.ts"
         },
         "./recipe/passwordless": {
+            "default": "./lib/build/recipe/passwordless/index.mjs",
             "require": "./lib/build/recipe/passwordless/index.cjs",
             "import": "./lib/build/recipe/passwordless/index.mjs",
             "types": "./lib/build/recipe/passwordless/index.d.ts"
         },
         "./recipe/passwordless/emaildelivery": {
+            "default": "./lib/build/recipe/passwordless/emaildelivery/services/index.mjs",
             "require": "./lib/build/recipe/passwordless/emaildelivery/services/index.cjs",
             "import": "./lib/build/recipe/passwordless/emaildelivery/services/index.mjs",
             "types": "./lib/build/recipe/passwordless/emaildelivery/services/index.d.ts"
         },
         "./recipe/passwordless/smsdelivery": {
+            "default": "./lib/build/recipe/passwordless/smsdelivery/services/index.mjs",
             "require": "./lib/build/recipe/passwordless/smsdelivery/services/index.cjs",
             "import": "./lib/build/recipe/passwordless/smsdelivery/services/index.mjs",
             "types": "./lib/build/recipe/passwordless/smsdelivery/services/index.d.ts"
         },
         "./recipe/session": {
+            "default": "./lib/build/recipe/session/index.mjs",
             "require": "./lib/build/recipe/session/index.cjs",
             "import": "./lib/build/recipe/session/index.mjs",
             "types": "./lib/build/recipe/session/index.d.ts"
         },
         "./recipe/session/framework/awsLambda": {
+            "default": "./lib/build/recipe/session/framework/awsLambda.mjs",
             "require": "./lib/build/recipe/session/framework/awsLambda.cjs",
             "import": "./lib/build/recipe/session/framework/awsLambda.mjs",
             "types": "./lib/build/recipe/session/framework/awsLambda.d.ts"
         },
         "./recipe/session/framework/express": {
+            "default": "./lib/build/recipe/session/framework/express.mjs",
             "require": "./lib/build/recipe/session/framework/express.cjs",
             "import": "./lib/build/recipe/session/framework/express.mjs",
             "types": "./lib/build/recipe/session/framework/express.d.ts"
         },
         "./recipe/session/framework/fastify": {
+            "default": "./lib/build/recipe/session/framework/fastify.mjs",
             "require": "./lib/build/recipe/session/framework/fastify.cjs",
             "import": "./lib/build/recipe/session/framework/fastify.mjs",
             "types": "./lib/build/recipe/session/framework/fastify.d.ts"
         },
         "./recipe/session/framework/hapi": {
+            "default": "./lib/build/recipe/session/framework/hapi.mjs",
             "require": "./lib/build/recipe/session/framework/hapi.cjs",
             "import": "./lib/build/recipe/session/framework/hapi.mjs",
             "types": "./lib/build/recipe/session/framework/hapi.d.ts"
         },
         "./recipe/session/framework/koa": {
+            "default": "./lib/build/recipe/session/framework/koa.mjs",
             "require": "./lib/build/recipe/session/framework/koa.cjs",
             "import": "./lib/build/recipe/session/framework/koa.mjs",
             "types": "./lib/build/recipe/session/framework/koa.d.ts"
         },
         "./recipe/session/framework/loopback": {
+            "default": "./lib/build/recipe/session/framework/loopback.mjs",
             "require": "./lib/build/recipe/session/framework/loopback.cjs",
             "import": "./lib/build/recipe/session/framework/loopback.mjs",
             "types": "./lib/build/recipe/session/framework/loopback.d.ts"
         },
         "./recipe/thirdparty": {
+            "default": "./lib/build/recipe/thirdparty/index.mjs",
             "require": "./lib/build/recipe/thirdparty/index.cjs",
             "import": "./lib/build/recipe/thirdparty/index.mjs",
             "types": "./lib/build/recipe/thirdparty/index.d.ts"
         },
         "./recipe/thirdparty/emaildelivery": {
+            "default": "./lib/build/recipe/thirdparty/emaildelivery/services/index.mjs",
             "require": "./lib/build/recipe/thirdparty/emaildelivery/services/index.cjs",
             "import": "./lib/build/recipe/thirdparty/emaildelivery/services/index.mjs",
             "types": "./lib/build/recipe/thirdparty/emaildelivery/services/index.d.ts"
         },
         "./recipe/thirdpartyemailpassword": {
+            "default": "./lib/build/recipe/thirdpartyemailpassword/index.mjs",
             "require": "./lib/build/recipe/thirdpartyemailpassword/index.cjs",
             "import": "./lib/build/recipe/thirdpartyemailpassword/index.mjs",
             "types": "./lib/build/recipe/thirdpartyemailpassword/index.d.ts"
         },
         "./recipe/thirdpartyemailpassword/emaildelivery": {
+            "default": "./lib/build/recipe/thirdpartyemailpassword/emaildelivery/services/index.mjs",
             "require": "./lib/build/recipe/thirdpartyemailpassword/emaildelivery/services/index.cjs",
             "import": "./lib/build/recipe/thirdpartyemailpassword/emaildelivery/services/index.mjs",
             "types": "./lib/build/recipe/thirdpartyemailpassword/emaildelivery/services/index.d.ts"
         },
         "./recipe/thirdpartypasswordless": {
+            "default": "./lib/build/recipe/thirdpartypasswordless/index.mjs",
             "require": "./lib/build/recipe/thirdpartypasswordless/index.cjs",
             "import": "./lib/build/recipe/thirdpartypasswordless/index.mjs",
             "types": "./lib/build/recipe/thirdpartypasswordless/index.d.ts"
         },
         "./recipe/thirdpartypasswordless/emaildelivery": {
+            "default": "./lib/build/recipe/thirdpartypasswordless/emaildelivery/services/index.mjs",
             "require": "./lib/build/recipe/thirdpartypasswordless/emaildelivery/services/index.cjs",
             "import": "./lib/build/recipe/thirdpartypasswordless/emaildelivery/services/index.mjs",
             "types": "./lib/build/recipe/thirdpartypasswordless/emaildelivery/services/index.d.ts"
         },
         "./recipe/thirdpartysmspasswordless/smsdelivery": {
+            "default": "./lib/build/recipe/thirdpartysmspasswordless/smsdelivery/services/index.mjs",
             "require": "./lib/build/recipe/thirdpartysmspasswordless/smsdelivery/services/index.cjs",
             "import": "./lib/build/recipe/thirdpartysmspasswordless/smsdelivery/services/index.mjs",
             "types": "./lib/build/recipe/thirdpartysmspasswordless/smsdelivery/services/index.d.ts"
         },
         "./recipe/usermetadata": {
+            "default": "./lib/build/recipe/usermetadata/index.mjs",
             "require": "./lib/build/recipe/usermetadata/index.cjs",
             "import": "./lib/build/recipe/usermetadata/index.mjs",
             "types": "./lib/build/recipe/usermetadata/index.d.ts"
         },
         "./recipe/userroles": {
+            "default": "./lib/build/recipe/userroles/index.mjs",
             "require": "./lib/build/recipe/userroles/index.cjs",
             "import": "./lib/build/recipe/userroles/index.mjs",
             "types": "./lib/build/recipe/userroles/index.d.ts"
         },
         "./types": {
+            "default": "./lib/build/types.mjs",
             "require": "./lib/build/types.cjs",
             "import": "./lib/build/types.mjs",
             "types": "./lib/build/types.d.ts"
         },
-        "./*": "./lib/build/*"
+        "./*": {
+            "default": "./lib/build/*.cjs",
+            "require": "./lib/build/*.cjs",
+            "import": "./lib/build/*.mjs",
+            "types": "./lib/build/*.d.ts"
+        }
     },
     "files": [
         "lib/build",
