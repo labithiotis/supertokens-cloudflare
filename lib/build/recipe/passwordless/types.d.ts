@@ -8,7 +8,7 @@ import type { TypeInput as SmsDeliveryTypeInput, TypeInputWithService as SmsDeli
 import SmsDeliveryIngredient from "../../ingredients/smsdelivery";
 import type { GeneralErrorResponse, NormalisedAppinfo, User, UserContext } from "../../types";
 import RecipeUserId from "../../recipeUserId";
-export declare type TypeInput = ({
+export type TypeInput = ({
     contactMethod: "PHONE";
     validatePhoneNumber?: (phoneNumber: string, tenantId: string) => Promise<string | undefined> | string | undefined;
 } | {
@@ -28,7 +28,7 @@ export declare type TypeInput = ({
         apis?: (originalImplementation: APIInterface, builder: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type TypeNormalisedInput = ({
+export type TypeNormalisedInput = ({
     contactMethod: "PHONE";
     validatePhoneNumber: (phoneNumber: string, tenantId: string) => Promise<string | undefined> | string | undefined;
 } | {
@@ -48,7 +48,7 @@ export declare type TypeNormalisedInput = ({
         apis: (originalImplementation: APIInterface, builder: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type RecipeInterface = {
+export type RecipeInterface = {
     createCode: (input: ({
         email: string;
     } | {
@@ -199,7 +199,7 @@ export declare type RecipeInterface = {
         userContext: UserContext;
     }) => Promise<DeviceType | undefined>;
 };
-export declare type DeviceType = {
+export type DeviceType = {
     preAuthSessionId: string;
     failedCodeInputAttemptCount: number;
     email?: string;
@@ -210,7 +210,7 @@ export declare type DeviceType = {
         codeLifetime: number;
     }[];
 };
-export declare type APIOptions = {
+export type APIOptions = {
     recipeImplementation: RecipeInterface;
     appInfo: NormalisedAppinfo;
     config: TypeNormalisedInput;
@@ -221,7 +221,7 @@ export declare type APIOptions = {
     emailDelivery: EmailDeliveryIngredient<TypePasswordlessEmailDeliveryInput>;
     smsDelivery: SmsDeliveryIngredient<TypePasswordlessSmsDeliveryInput>;
 };
-export declare type APIInterface = {
+export type APIInterface = {
     createCodePOST?: (input: ({
         email: string;
     } | {
@@ -297,7 +297,7 @@ export declare type APIInterface = {
         exists: boolean;
     } | GeneralErrorResponse>;
 };
-export declare type TypePasswordlessEmailDeliveryInput = {
+export type TypePasswordlessEmailDeliveryInput = {
     type: "PASSWORDLESS_LOGIN";
     isFirstFactor: boolean;
     email: string;
@@ -307,7 +307,7 @@ export declare type TypePasswordlessEmailDeliveryInput = {
     preAuthSessionId: string;
     tenantId: string;
 };
-export declare type TypePasswordlessSmsDeliveryInput = {
+export type TypePasswordlessSmsDeliveryInput = {
     type: "PASSWORDLESS_LOGIN";
     isFirstFactor: boolean;
     phoneNumber: string;

@@ -35,7 +35,7 @@ export declare class User implements UserType {
     constructor(user: UserWithoutHelperFunctions);
     toJson(): JSONObject;
 }
-export declare type UserWithoutHelperFunctions = {
+export type UserWithoutHelperFunctions = {
     id: string;
     timeJoined: number;
     isPrimaryUser: boolean;

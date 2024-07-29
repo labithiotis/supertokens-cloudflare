@@ -3,7 +3,7 @@ import type { JWTVerifyGetKey } from "jose";
 import type { RecipeInterface, TypeNormalisedInput } from "./types";
 import { Querier } from "../../querier";
 import type { NormalisedAppinfo } from "../../types";
-export declare type Helpers = {
+export type Helpers = {
     querier: Querier;
     JWKS: JWTVerifyGetKey;
     config: TypeNormalisedInput;

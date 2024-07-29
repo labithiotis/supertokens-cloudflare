@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type { APIInterface, APIOptions } from "../../types";
 import type { UserContext } from "../../../../types";
-export declare type Response = {
+export type Response = {
     status: "OK";
 } | {
     status: "RECIPE_NOT_CONFIGURED_ON_BACKEND_SDK_ERROR";

@@ -56,7 +56,7 @@ export declare class AWSResponse extends BaseResponse {
      */
     setStatusCode: (statusCode: number) => void;
     sendJSONResponse: (content: any) => void;
-    sendResponse: (response?: APIGatewayProxyResult | APIGatewayProxyStructuredResultV2 | undefined) => APIGatewayProxyResult | APIGatewayProxyStructuredResultV2;
+    sendResponse: (response?: APIGatewayProxyResult | APIGatewayProxyStructuredResultV2) => APIGatewayProxyResult | APIGatewayProxyStructuredResultV2;
 }
 export interface SessionEventV2 extends SupertokensLambdaEventV2 {
     session?: SessionContainerInterface;
@@ -64,7 +64,7 @@ export interface SessionEventV2 extends SupertokensLambdaEventV2 {
 export interface SessionEvent extends SupertokensLambdaEvent {
     session?: SessionContainerInterface;
 }
-export declare const middleware: (handler?: Handler<any, any> | undefined) => Handler;
+export declare const middleware: (handler?: Handler) => Handler;
 export interface AWSFramework extends Framework {
     middleware: (handler?: Handler) => Handler;
 }

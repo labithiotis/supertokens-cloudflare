@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type { APIInterface, APIOptions } from "../../types";
 import type { UserContext } from "../../../../types";
-declare type Response = {
+type Response = {
     status: "OK" | "EMAIL_ALREADY_VERIFIED_ERROR";
 };
 export declare const userEmailVerifyTokenPost: (_: APIInterface, tenantId: string, options: APIOptions, userContext: UserContext) => Promise<Response>;

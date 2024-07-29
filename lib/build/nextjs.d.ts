@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CollectingResponse, PreParsedRequest } from "./framework/custom";
 import type { SessionContainer, VerifySessionOptions } from "./recipe/session";
-declare type PartialNextRequest = {
+type PartialNextRequest = {
     method: string;
     url: string;
     headers: Headers;

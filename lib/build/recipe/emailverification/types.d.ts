@@ -7,7 +7,7 @@ import type { GeneralErrorResponse, NormalisedAppinfo, UserContext } from "../..
 import type { SessionContainerInterface } from "../session/types";
 import RecipeUserId from "../../recipeUserId";
 import type { User } from "../../types";
-export declare type TypeInput = {
+export type TypeInput = {
     mode: "REQUIRED" | "OPTIONAL";
     emailDelivery?: EmailDeliveryTypeInput<TypeEmailVerificationEmailDeliveryInput>;
     getEmailForRecipeUserId?: (recipeUserId: RecipeUserId, userContext: UserContext) => Promise<{
@@ -21,7 +21,7 @@ export declare type TypeInput = {
         apis?: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type TypeNormalisedInput = {
+export type TypeNormalisedInput = {
     mode: "REQUIRED" | "OPTIONAL";
     getEmailDeliveryConfig: (isInServerlessEnv: boolean) => EmailDeliveryTypeInputWithService<TypeEmailVerificationEmailDeliveryInput>;
     getEmailForRecipeUserId?: (recipeUserId: RecipeUserId, userContext: UserContext) => Promise<{
@@ -35,11 +35,11 @@ export declare type TypeNormalisedInput = {
         apis: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type UserEmailInfo = {
+export type UserEmailInfo = {
     recipeUserId: RecipeUserId;
     email: string;
 };
-export declare type RecipeInterface = {
+export type RecipeInterface = {
     createEmailVerificationToken(input: {
         recipeUserId: RecipeUserId;
         email: string;
@@ -83,7 +83,7 @@ export declare type RecipeInterface = {
         status: "OK";
     }>;
 };
-export declare type APIOptions = {
+export type APIOptions = {
     recipeImplementation: RecipeInterface;
     appInfo: NormalisedAppinfo;
     config: TypeNormalisedInput;
@@ -93,7 +93,7 @@ export declare type APIOptions = {
     res: BaseResponse;
     emailDelivery: EmailDeliveryIngredient<TypeEmailVerificationEmailDeliveryInput>;
 };
-export declare type APIInterface = {
+export type APIInterface = {
     verifyEmailPOST: undefined | ((input: {
         token: string;
         tenantId: string;
@@ -127,7 +127,7 @@ export declare type APIInterface = {
         newSession?: SessionContainerInterface;
     } | GeneralErrorResponse>);
 };
-export declare type TypeEmailVerificationEmailDeliveryInput = {
+export type TypeEmailVerificationEmailDeliveryInput = {
     type: "EMAIL_VERIFICATION";
     user: {
         id: string;
@@ -137,7 +137,7 @@ export declare type TypeEmailVerificationEmailDeliveryInput = {
     emailVerifyLink: string;
     tenantId: string;
 };
-export declare type GetEmailForRecipeUserIdFunc = (user: User | undefined, recipeUserId: RecipeUserId, userContext: UserContext) => Promise<{
+export type GetEmailForRecipeUserIdFunc = (user: User | undefined, recipeUserId: RecipeUserId, userContext: UserContext) => Promise<{
     status: "OK";
     email: string;
 } | {

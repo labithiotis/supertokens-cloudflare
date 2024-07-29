@@ -2,7 +2,7 @@
 import type { APIInterface, APIOptions } from "../../../types";
 import type { User, UserContext } from "../../../../../types";
 import RecipeUserId from "../../../../../recipeUserId";
-declare type Response = {
+type Response = {
     status: "OK";
     user: User;
     recipeUserId: RecipeUserId;

@@ -1,11 +1,11 @@
 // @ts-nocheck
 import type { APIInterface, APIOptions } from "../../types";
 import type { UserContext } from "../../../../types";
-declare type TenantWithLoginMethods = {
+type TenantWithLoginMethods = {
     tenantId: string;
     firstFactors: string[];
 };
-export declare type Response = {
+export type Response = {
     status: "OK";
     tenants: TenantWithLoginMethods[];
 };

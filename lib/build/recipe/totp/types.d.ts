@@ -3,7 +3,7 @@ import { BaseRequest, BaseResponse } from "../../framework";
 import OverrideableBuilder from "supertokens-js-override";
 import type { GeneralErrorResponse, UserContext } from "../../types";
 import type { SessionContainerInterface } from "../session/types";
-export declare type TypeInput = {
+export type TypeInput = {
     issuer?: string;
     defaultSkew?: number;
     defaultPeriod?: number;
@@ -12,7 +12,7 @@ export declare type TypeInput = {
         apis?: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type TypeNormalisedInput = {
+export type TypeNormalisedInput = {
     issuer: string;
     defaultSkew: number;
     defaultPeriod: number;
@@ -21,7 +21,7 @@ export declare type TypeNormalisedInput = {
         apis: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type RecipeInterface = {
+export type RecipeInterface = {
     getUserIdentifierInfoForUserId: (input: {
         userId: string;
         userContext: UserContext;
@@ -111,7 +111,7 @@ export declare type RecipeInterface = {
         retryAfterMs: number;
     }>;
 };
-export declare type APIOptions = {
+export type APIOptions = {
     recipeImplementation: RecipeInterface;
     config: TypeNormalisedInput;
     recipeId: string;
@@ -119,7 +119,7 @@ export declare type APIOptions = {
     req: BaseRequest;
     res: BaseResponse;
 };
-export declare type APIInterface = {
+export type APIInterface = {
     createDevicePOST: undefined | ((input: {
         deviceName?: string;
         options: APIOptions;

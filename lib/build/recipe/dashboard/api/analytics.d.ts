@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type { APIInterface, APIOptions } from "../types";
 import type { UserContext } from "../../../types";
-export declare type Response = {
+export type Response = {
     status: "OK";
 };
 export default function analyticsPost(_: APIInterface, ___: string, options: APIOptions, userContext: UserContext): Promise<Response>;

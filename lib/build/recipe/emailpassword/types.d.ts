@@ -6,7 +6,7 @@ import type { TypeInput as EmailDeliveryTypeInput, TypeInputWithService as Email
 import EmailDeliveryIngredient from "../../ingredients/emaildelivery";
 import type { GeneralErrorResponse, NormalisedAppinfo, User, UserContext } from "../../types";
 import RecipeUserId from "../../recipeUserId";
-export declare type TypeNormalisedInput = {
+export type TypeNormalisedInput = {
     signUpFeature: TypeNormalisedInputSignUp;
     signInFeature: TypeNormalisedInputSignIn;
     getEmailDeliveryConfig: (isInServerlessEnv: boolean) => EmailDeliveryTypeInputWithService<TypeEmailPasswordEmailDeliveryInput>;
@@ -16,34 +16,34 @@ export declare type TypeNormalisedInput = {
         apis: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type TypeInputFormField = {
+export type TypeInputFormField = {
     id: string;
     validate?: (value: any, tenantId: string, userContext: UserContext) => Promise<string | undefined>;
     optional?: boolean;
 };
-export declare type TypeFormField = {
+export type TypeFormField = {
     id: string;
     value: any;
 };
-export declare type TypeInputSignUp = {
+export type TypeInputSignUp = {
     formFields?: TypeInputFormField[];
 };
-export declare type NormalisedFormField = {
+export type NormalisedFormField = {
     id: string;
     validate: (value: any, tenantId: string, userContext: UserContext) => Promise<string | undefined>;
     optional: boolean;
 };
-export declare type TypeNormalisedInputSignUp = {
+export type TypeNormalisedInputSignUp = {
     formFields: NormalisedFormField[];
 };
-export declare type TypeNormalisedInputSignIn = {
+export type TypeNormalisedInputSignIn = {
     formFields: NormalisedFormField[];
 };
-export declare type TypeNormalisedInputResetPasswordUsingTokenFeature = {
+export type TypeNormalisedInputResetPasswordUsingTokenFeature = {
     formFieldsForGenerateTokenForm: NormalisedFormField[];
     formFieldsForPasswordResetForm: NormalisedFormField[];
 };
-export declare type TypeInput = {
+export type TypeInput = {
     signUpFeature?: TypeInputSignUp;
     emailDelivery?: EmailDeliveryTypeInput<TypeEmailPasswordEmailDeliveryInput>;
     override?: {
@@ -51,7 +51,7 @@ export declare type TypeInput = {
         apis?: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type RecipeInterface = {
+export type RecipeInterface = {
     signUp(input: {
         email: string;
         password: string;
@@ -152,7 +152,7 @@ export declare type RecipeInterface = {
         failureReason: string;
     }>;
 };
-export declare type APIOptions = {
+export type APIOptions = {
     recipeImplementation: RecipeInterface;
     appInfo: NormalisedAppinfo;
     config: TypeNormalisedInput;
@@ -162,7 +162,7 @@ export declare type APIOptions = {
     res: BaseResponse;
     emailDelivery: EmailDeliveryIngredient<TypeEmailPasswordEmailDeliveryInput>;
 };
-export declare type APIInterface = {
+export type APIInterface = {
     emailExistsGET: undefined | ((input: {
         email: string;
         tenantId: string;
@@ -244,7 +244,7 @@ export declare type APIInterface = {
         status: "EMAIL_ALREADY_EXISTS_ERROR";
     } | GeneralErrorResponse>);
 };
-export declare type TypeEmailPasswordPasswordResetEmailDeliveryInput = {
+export type TypeEmailPasswordPasswordResetEmailDeliveryInput = {
     type: "PASSWORD_RESET";
     user: {
         id: string;
@@ -254,4 +254,4 @@ export declare type TypeEmailPasswordPasswordResetEmailDeliveryInput = {
     passwordResetLink: string;
     tenantId: string;
 };
-export declare type TypeEmailPasswordEmailDeliveryInput = TypeEmailPasswordPasswordResetEmailDeliveryInput;
+export type TypeEmailPasswordEmailDeliveryInput = TypeEmailPasswordPasswordResetEmailDeliveryInput;

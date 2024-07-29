@@ -1,5 +1,4 @@
 // @ts-nocheck
-/// <reference types="node" />
 import type { Request, Response } from "express";
 import type { IncomingMessage } from "node:http";
 import { ServerResponse } from "node:http";

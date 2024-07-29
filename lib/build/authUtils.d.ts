@@ -49,7 +49,7 @@ export declare const AuthUtils: {
         isVerified: boolean;
         signInVerifiesLoginMethod: boolean;
         skipSessionUserUpdateInCore: boolean;
-        session?: SessionContainerInterface | undefined;
+        session?: SessionContainerInterface;
         userContext: UserContext;
     }) => Promise<{
         status: "OK";
@@ -86,7 +86,7 @@ export declare const AuthUtils: {
         tenantId: string;
         factorId: string;
         isSignUp: boolean;
-        session?: SessionContainerInterface | undefined;
+        session?: SessionContainerInterface;
         userContext: UserContext;
         req: BaseRequest;
         res: BaseResponse;

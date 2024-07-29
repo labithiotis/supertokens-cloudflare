@@ -1,7 +1,7 @@
 // @ts-nocheck
 import OverrideableBuilder from "supertokens-js-override";
 import type { UserContext } from "../../types";
-export declare type TypeInput = {
+export type TypeInput = {
     skipAddingRolesToAccessToken?: boolean;
     skipAddingPermissionsToAccessToken?: boolean;
     override?: {
@@ -9,7 +9,7 @@ export declare type TypeInput = {
         apis?: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type TypeNormalisedInput = {
+export type TypeNormalisedInput = {
     skipAddingRolesToAccessToken: boolean;
     skipAddingPermissionsToAccessToken: boolean;
     override: {
@@ -17,8 +17,8 @@ export declare type TypeNormalisedInput = {
         apis: (originalImplementation: APIInterface, builder?: OverrideableBuilder<APIInterface>) => APIInterface;
     };
 };
-export declare type APIInterface = {};
-export declare type RecipeInterface = {
+export type APIInterface = {};
+export type RecipeInterface = {
     addRoleToUser: (input: {
         userId: string;
         role: string;

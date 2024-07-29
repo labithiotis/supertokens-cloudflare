@@ -2,7 +2,7 @@
 import type { APIInterface, APIOptions } from "../../types";
 import type { ProviderConfig } from "../../../thirdparty/types";
 import type { UserContext } from "../../../../types";
-export declare type Response = {
+export type Response = {
     status: "OK";
     providerConfig: ProviderConfig & {
         isGetAuthorisationRedirectUrlOverridden: boolean;

@@ -5,7 +5,7 @@ import NormalisedURLDomain from "../../normalisedURLDomain";
 import NormalisedURLPath from "../../normalisedURLPath";
 import type { RecipeInterface as JWTRecipeInterface, APIInterface as JWTAPIInterface, JsonWebKey } from "../jwt/types";
 import type { GeneralErrorResponse, UserContext } from "../../types";
-export declare type TypeInput = {
+export type TypeInput = {
     issuer?: string;
     jwtValiditySeconds?: number;
     override?: {
@@ -17,7 +17,7 @@ export declare type TypeInput = {
         };
     };
 };
-export declare type TypeNormalisedInput = {
+export type TypeNormalisedInput = {
     issuerDomain: NormalisedURLDomain;
     issuerPath: NormalisedURLPath;
     jwtValiditySeconds?: number;
@@ -30,14 +30,14 @@ export declare type TypeNormalisedInput = {
         };
     };
 };
-export declare type APIOptions = {
+export type APIOptions = {
     recipeImplementation: RecipeInterface;
     config: TypeNormalisedInput;
     recipeId: string;
     req: BaseRequest;
     res: BaseResponse;
 };
-export declare type APIInterface = {
+export type APIInterface = {
     getOpenIdDiscoveryConfigurationGET: undefined | ((input: {
         options: APIOptions;
         userContext: UserContext;
@@ -47,7 +47,7 @@ export declare type APIInterface = {
         jwks_uri: string;
     } | GeneralErrorResponse>);
 };
-export declare type RecipeInterface = {
+export type RecipeInterface = {
     getOpenIdDiscoveryConfiguration(input: {
         userContext: UserContext;
     }): Promise<{

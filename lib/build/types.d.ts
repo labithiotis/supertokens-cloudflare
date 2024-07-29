@@ -6,12 +6,12 @@ import type { TypeFramework } from "./framework/types";
 import type { RecipeLevelUser } from "./recipe/accountlinking/types";
 import { BaseRequest } from "./framework";
 declare const __brand: unique symbol;
-declare type Brand<B> = {
+type Brand<B> = {
     [__brand]: B;
 };
-declare type Branded<T, B> = T & Brand<B>;
-export declare type UserContext = Branded<Record<string, any>, "UserContext">;
-export declare type AppInfo = {
+type Branded<T, B> = T & Brand<B>;
+export type UserContext = Branded<Record<string, any>, "UserContext">;
+export type AppInfo = {
     appName: string;
     websiteDomain?: string;
     origin?: string | ((input: {
@@ -23,7 +23,7 @@ export declare type AppInfo = {
     apiBasePath?: string;
     apiGatewayPath?: string;
 };
-export declare type NormalisedAppinfo = {
+export type NormalisedAppinfo = {
     appName: string;
     getOrigin: (input: {
         request: BaseRequest | undefined;
@@ -39,13 +39,13 @@ export declare type NormalisedAppinfo = {
     apiGatewayPath: NormalisedURLPath;
     websiteBasePath: NormalisedURLPath;
 };
-export declare type SuperTokensInfo = {
+export type SuperTokensInfo = {
     connectionURI: string;
     apiKey?: string;
     networkInterceptor?: NetworkInterceptor;
     disableCoreCallCache?: boolean;
 };
-export declare type TypeInput = {
+export type TypeInput = {
     supertokens?: SuperTokensInfo;
     framework?: TypeFramework;
     appInfo: AppInfo;
@@ -54,7 +54,7 @@ export declare type TypeInput = {
     isInServerlessEnv?: boolean;
     debug?: boolean;
 };
-export declare type NetworkInterceptor = (request: HttpRequest, userContext: UserContext) => HttpRequest;
+export type NetworkInterceptor = (request: HttpRequest, userContext: UserContext) => HttpRequest;
 export interface HttpRequest {
     url: string;
     method: HTTPMethod;
@@ -64,25 +64,25 @@ export interface HttpRequest {
     params?: Record<string, boolean | number | string | undefined>;
     body?: any;
 }
-export declare type RecipeListFunction = (appInfo: NormalisedAppinfo, isInServerlessEnv: boolean) => RecipeModule;
-export declare type APIHandled = {
+export type RecipeListFunction = (appInfo: NormalisedAppinfo, isInServerlessEnv: boolean) => RecipeModule;
+export type APIHandled = {
     pathWithoutApiBasePath: NormalisedURLPath;
     method: HTTPMethod;
     id: string;
     disabled: boolean;
 };
-export declare type HTTPMethod = "post" | "get" | "delete" | "put" | "options" | "trace";
-export declare type JSONPrimitive = string | number | boolean | null;
-export declare type JSONArray = Array<JSONValue>;
-export declare type JSONValue = JSONPrimitive | JSONObject | JSONArray | undefined;
+export type HTTPMethod = "post" | "get" | "delete" | "put" | "options" | "trace";
+export type JSONPrimitive = string | number | boolean | null;
+export type JSONArray = Array<JSONValue>;
+export type JSONValue = JSONPrimitive | JSONObject | JSONArray | undefined;
 export interface JSONObject {
     [ind: string]: JSONValue;
 }
-export declare type GeneralErrorResponse = {
+export type GeneralErrorResponse = {
     status: "GENERAL_ERROR";
     message: string;
 };
-export declare type User = {
+export type User = {
     id: string;
     timeJoined: number;
     isPrimaryUser: boolean;

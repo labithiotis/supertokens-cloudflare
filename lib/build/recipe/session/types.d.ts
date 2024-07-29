@@ -7,18 +7,18 @@ import type { RecipeInterface as OpenIdRecipeInterface, APIInterface as OpenIdAP
 import type { JSONObject, JSONValue, UserContext } from "../../types";
 import type { GeneralErrorResponse } from "../../types";
 import RecipeUserId from "../../recipeUserId";
-export declare type KeyInfo = {
+export type KeyInfo = {
     publicKey: string;
     expiryTime: number;
     createdAt: number;
 };
-export declare type AntiCsrfType = "VIA_TOKEN" | "VIA_CUSTOM_HEADER" | "NONE";
-export declare type TokenInfo = {
+export type AntiCsrfType = "VIA_TOKEN" | "VIA_CUSTOM_HEADER" | "NONE";
+export type TokenInfo = {
     token: string;
     expiry: number;
     createdTime: number;
 };
-export declare type CreateOrRefreshAPIResponse = {
+export type CreateOrRefreshAPIResponse = {
     session: {
         handle: string;
         userId: string;
@@ -37,9 +37,9 @@ export interface ErrorHandlers {
     onInvalidClaim?: InvalidClaimErrorHandlerMiddleware;
     onClearDuplicateSessionCookies?: ErrorHandlerMiddleware;
 }
-export declare type TokenType = "access" | "refresh";
-export declare type TokenTransferMethod = "header" | "cookie";
-export declare type TypeInput = {
+export type TokenType = "access" | "refresh";
+export type TokenTransferMethod = "header" | "cookie";
+export type TypeInput = {
     useDynamicAccessTokenSigningKey?: boolean;
     sessionExpiredStatusCode?: number;
     invalidClaimStatusCode?: number;
@@ -71,7 +71,7 @@ export declare type TypeInput = {
         };
     };
 };
-export declare type TypeNormalisedInput = {
+export type TypeNormalisedInput = {
     useDynamicAccessTokenSigningKey: boolean;
     refreshTokenPath: NormalisedURLPath;
     accessTokenPath: NormalisedURLPath;
@@ -135,7 +135,7 @@ export interface VerifySessionOptions {
     checkDatabase?: boolean;
     overrideGlobalClaimValidators?: (globalClaimValidators: SessionClaimValidator[], session: SessionContainerInterface, userContext: UserContext) => Promise<SessionClaimValidator[]> | SessionClaimValidator[];
 }
-export declare type RecipeInterface = {
+export type RecipeInterface = {
     createNewSession(input: {
         userId: string;
         recipeUserId: RecipeUserId;
@@ -293,7 +293,7 @@ export interface SessionContainerInterface {
     removeClaim(claim: SessionClaim<any>, userContext?: Record<string, any>): Promise<void>;
     attachToRequestResponse(reqResInfo: ReqResInfo, userContext?: Record<string, any>): Promise<void> | void;
 }
-export declare type APIOptions = {
+export type APIOptions = {
     recipeImplementation: RecipeInterface;
     config: TypeNormalisedInput;
     recipeId: string;
@@ -301,7 +301,7 @@ export declare type APIOptions = {
     req: BaseRequest;
     res: BaseResponse;
 };
-export declare type APIInterface = {
+export type APIInterface = {
     /**
      * We do not add a GeneralErrorResponse response to this API
      * since it's not something that is directly called by the user on the
@@ -324,7 +324,7 @@ export declare type APIInterface = {
         userContext: UserContext;
     }): Promise<SessionContainerInterface | undefined>;
 };
-export declare type SessionInformation = {
+export type SessionInformation = {
     sessionHandle: string;
     userId: string;
     recipeUserId: RecipeUserId;
@@ -334,17 +334,17 @@ export declare type SessionInformation = {
     timeCreated: number;
     tenantId: string;
 };
-export declare type ClaimValidationResult = {
+export type ClaimValidationResult = {
     isValid: true;
 } | {
     isValid: false;
     reason?: JSONValue;
 };
-export declare type ClaimValidationError = {
+export type ClaimValidationError = {
     id: string;
     reason?: JSONValue;
 };
-export declare type SessionClaimValidator = (// We split the type like this to express that either both claim and shouldRefetch is defined or neither.
+export type SessionClaimValidator = (// We split the type like this to express that either both claim and shouldRefetch is defined or neither.
 {
     claim: SessionClaim<any>;
     /**
@@ -394,7 +394,7 @@ export declare abstract class SessionClaim<T> {
     abstract getValueFromPayload(payload: JSONObject, userContext: UserContext): T | undefined;
     build(userId: string, recipeUserId: RecipeUserId, tenantId: string, currentPayload: JSONObject | undefined, userContext: UserContext): Promise<JSONObject>;
 }
-export declare type ReqResInfo = {
+export type ReqResInfo = {
     res: BaseResponse;
     req: BaseRequest;
     transferMethod: TokenTransferMethod;
